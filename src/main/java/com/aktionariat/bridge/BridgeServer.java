@@ -85,6 +85,8 @@ public class BridgeServer extends WebSocketServer {
 			LOG.info("Received " + message + " from " + conn.getRemoteSocketAddress());
 			if (message.contentEquals("ping")) {
 				conn.send("pong"); // custom ping pong for monitoring, not related to ws protocol level ping
+			} else if (message.contentEquals("hello")) {
+				conn.send("Hello World, this is WalletConnect v1.0"); // hello
 			} else {
 //				implicitAck(conn);
 				WalletConnectMessage msg = WalletConnectMessage.parse(conn, message);
