@@ -16,7 +16,7 @@ do
 done
 
 IMAGE_NAME=walletconnect/bridge-server-java
-IMAGE_TAG=0.1
+IMAGE_TAG=0.2
 DOCKER_PUSH_REGISTRY=${DOCKER_PUSH_REGISTRY:-maven-wh.niub.la:8482}
 
 echo "Building ${IMAGE_NAME}:${IMAGE_TAG}"
