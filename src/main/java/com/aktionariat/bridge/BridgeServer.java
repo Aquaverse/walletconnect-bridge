@@ -21,9 +21,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -31,6 +29,8 @@ import javax.net.ssl.TrustManagerFactory;
 
 import org.java_websocket.WebSocket;
 import org.java_websocket.WebSocketServerFactory;
+import org.java_websocket.drafts.Draft;
+import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.framing.Framedata;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.DefaultSSLWebSocketServerFactory;
@@ -51,7 +51,7 @@ public class BridgeServer extends WebSocketServer {
 	private BindException error;
 
 	public BridgeServer(int port) throws UnknownHostException {
-		super(new InetSocketAddress(port));
+		super(new InetSocketAddress(port), Collections.singletonList(new RFC6455()));
 		super.setReuseAddr(true);
 		this.startAttemptCompleted = false;
 		this.bridges = new HashMap<String, Bridge>();
